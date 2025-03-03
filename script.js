@@ -9,6 +9,7 @@ class WordleGame {
         this.currentTiles = [];
         this.isGameOver = false;
         this.stats = this.loadStats();
+        this.currentCategory = "animals";
         this.init();
     }
 
@@ -84,16 +85,21 @@ class WordleGame {
             const button = document.createElement("button");
             button.className = "category-icon";
             button.innerHTML = cat.icon;
-            button.onclick = () => this.resetGame(cat.name);
+            button.onclick = () => this.changeCategory(cat.name);
             container.appendChild(button);
         });
     }
 
-    resetGame(category = "animals") {
+    changeCategory(category) {
+        this.currentCategory = category;
+        this.resetGame();
+    }
+
+    resetGame() {
         this.currentRow = 0;
         this.currentTiles = [];
         this.isGameOver = false;
-        this.currentWord = this.getRandomWord(category);
+        this.currentWord = this.getRandomWord(this.currentCategory);
         document.getElementById("message").textContent = "";
         this.clearGrid();
     }

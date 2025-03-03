@@ -104,6 +104,12 @@ class WordleGame {
         this.clearGrid();
     }
 
+    clearGrid() {
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+        this.createGrid();
+    }
+
     getRandomWord(category) {
         return this.wordLists[category]?.[Math.floor(Math.random() * this.wordLists[category].length)] || "";
     }
